@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Editor</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <h1>Products Editor</h1>
+    <input id="name" placeholder="Product Name">
+    <input id="price" placeholder="Price">
+    <input id="image" placeholder="Image URL">
+    <textarea id="desc" placeholder="Description"></textarea>
+    <button onclick="addProduct()">Add Product</button>
+    <pre id="output"></pre>
+
+    <script src="../js/admin.js"></script>
+    <script>
+        function addProduct() {
+            const name = document.getElementById("name").value;
+            const price = document.getElementById("price").value;
+            const image = document.getElementById("image").value;
+            const desc = document.getElementById("desc").value;
+
+            if(!name || !price || !image || !desc) {
+                alert("Fill all fields");
+                return;
+            }
+
+            const product = {
+                id: Date.now(),
+                name,
+                price,
+                image,
+                description: desc
+            };
+
+            document.getElementById("output").textContent =
+                JSON.stringify(product, null, 2) + "\n\nCopy this to products.json";
+        }
+    </script>
+</body>
+</html>
